@@ -1,7 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from yaml import serialize
+
 from apps.serializers import UserSerializer
+from apps.models import User
 from drf_spectacular.utils import extend_schema
 
 
@@ -19,3 +22,16 @@ class TelegramApiView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class TelegramUserListAPIView(APIView):
+    serializer_class = UserSerializer
+
+    def get(self, request):
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
+
+
+class TelegramUserDetailAPIView(APIView):
+    ...
