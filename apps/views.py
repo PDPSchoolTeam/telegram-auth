@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from yaml import serialize
+from django.shortcuts import get_object_or_404
 
 from apps.serializers import UserSerializer
 from apps.models import User
@@ -34,4 +34,9 @@ class TelegramUserListAPIView(APIView):
 
 
 class TelegramUserDetailAPIView(APIView):
-    ...
+    serializer_class = UserSerializer
+
+    def get(self, request, pk):
+        user = get_object_or_404(User, telegram_id=pk)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
