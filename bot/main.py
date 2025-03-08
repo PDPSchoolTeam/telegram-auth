@@ -5,6 +5,7 @@ from aiogram.filters.command import Command, CommandStart
 from endpoint import register_user, get_user
 from aiogram import Bot, Dispatcher
 from aiogram.types import Message
+from middelware import ThrottlingMiddleware
 
 bot = Bot(BOT_TOKEN)
 
@@ -24,6 +25,9 @@ async def register_commands(message: Message):
             telegram_id=message.from_user.id,
         )
         await message.answer("Register Successful!")
+
+
+dp.message.middleware(ThrottlingMiddleware(limit=0.87))
 
 
 async def main():
