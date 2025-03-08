@@ -1,8 +1,14 @@
+import asyncio
+import logging
 from aiogram import BaseMiddleware
 from aiogram.types import Message
-import asyncio
+
+# Logger setup
+logger = logging.getLogger("request_logger")
+logging.basicConfig(filename="request_logs.log", level=logging.INFO, format="%(asctime)s - %(message)s")
 
 
+# Aiogram Middleware
 class ThrottlingMiddleware(BaseMiddleware):
     def __init__(self, limit: float):
         super().__init__()

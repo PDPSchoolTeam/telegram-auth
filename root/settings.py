@@ -6,7 +6,7 @@ SECRET_KEY = 'django-insecure-tyj97(hh(6(v_+ob2hn!a+(a8#l7f(8u@fslm9-rl_hb!bsj7m
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'apps.User'
 
@@ -35,6 +35,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # my middleware
+    'apps.middleware.RequestLoggingMiddleware',
 ]
 
 ROOT_URLCONF = 'root.urls'
