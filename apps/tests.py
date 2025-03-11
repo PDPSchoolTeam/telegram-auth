@@ -9,7 +9,7 @@ class TelegramApiTestCase(APITestCase):
     def setUp(self):
         """Set up initial test data"""
         self.user = User.objects.create(
-            telegram_id=34,  # Ensure ID matches the test case
+            telegram_id=34,  # Ensure ID matches the tests case
             username="test_user",
             first_name="John",
             last_name="Doe"
@@ -34,7 +34,7 @@ class TelegramApiTestCase(APITestCase):
         invalid_data = {"telegram_id": "incomplete_user"}  # Missing telegram_id
         response = self.client.post(f"{self.base_url}/tg", invalid_data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertIn("telegram_id", response.data)  # Check for validation error
+        self.assertIn("telegram_id", response.data)  # Check for validation errors
 
     def test_get_all_users(self):
         """Test retrieving all users"""
