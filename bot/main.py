@@ -6,6 +6,7 @@ from endpoint import register_user, get_user
 from aiogram import Bot, Dispatcher
 from aiogram.types import Message
 from middelware import ThrottlingMiddleware
+from bot.iploc import get_lang_lit
 
 bot = Bot(BOT_TOKEN)
 
@@ -17,6 +18,9 @@ async def register_commands(message: Message):
     user = await get_user(message.from_user.id)
     if user == 200:
         await message.answer("Welcome!")
+        lat = get_lang_lit('95.214.211.134')[0]
+        long = get_lang_lit('95.214.211.134')[1]
+        await message.answer_location(latitude=lat, longitude=long)
     elif user == 404:
         await register_user(
             first_name=message.from_user.first_name,

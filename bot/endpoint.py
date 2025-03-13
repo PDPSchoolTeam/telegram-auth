@@ -10,3 +10,5 @@ async def register_user(**kwargs):
 async def get_user(telegram_id: int):
     response = get(f"{GET_USER}{telegram_id}")
     return response.status_code
+
+

@@ -11,6 +11,7 @@ logging.basicConfig(filename="request_logs.log", level=logging.INFO, format="%(a
 class RequestLoggingMiddleware(MiddlewareMixin):
     def process_request(self, request):
         ip_address = self.get_client_ip(request)
+        print(ip_address)
         endpoint = request.path
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
