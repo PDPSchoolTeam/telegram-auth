@@ -1,5 +1,5 @@
 # Telegram Auth
-
+ 
 ## Overview
 
 Telegram Auth is a Django-based application that provides a REST API for user authentication via Telegram. It includes
